@@ -33,3 +33,77 @@ print(classmates)
 
 classmates.pop()
 print(classmates)
+
+'''
+要删除指定位置的元素，用pop(i)方法，其中i是索引位置：
+'''
+classmates.pop(1)
+print(classmates)
+
+
+'''
+要把某个元素替换成别的元素，可以直接赋值给对应的索引位置：
+'''
+classmates[1] = 'good'
+print(classmates)
+
+
+'''
+要把某个元素替换成别的元素，可以直接赋值给对应的索引位置：
+'''
+arr = ['allpe',123,True]
+print(arr)
+
+'''
+list元素也可以是另一个list，比如：
+'''
+arr1 = ['phton','java',arr,'swift']
+print(arr1)
+
+
+
+'''
+另一种有序列表叫元组：tuple。tuple和list非常类似，但是tuple一旦初始化就不能修改，比如同样是列出同学的名字：
+'''
+
+classmates2 = ('Michael', 'Bob', 'Tracy')
+print(classmates2)
+
+'''
+tuple的陷阱：当你定义一个tuple时，在定义的时候，tuple的元素就必须被确定下来，比如：
+'''
+t = (1,2)
+print(t)
+
+'''
+如果要定义一个空的tuple，可以写成()：
+'''
+t1 = ()
+print(t1)
+
+
+'''
+但是，要定义一个只有1个元素的tuple，如果你这么定义：
+定义的不是tuple，是1这个数！这是因为括号()既可以表示tuple，又可以表示数学公式中的小括号，这就产生了歧义，因此，Python规定，这种情况下，按小括号进行计算，计算结果自然是1。
+
+所以，只有1个元素的tuple定义时必须加一个逗号,，来消除歧义：
+'''
+t2 = (1)
+print(t2)
+t3 = (1,)
+print(t3)
+
+
+Y = [
+    ['Apple', 'Google', 'Microsoft'],
+    ['Java', 'Python', 'Ruby', 'PHP'],
+    ['Adam', 'Bart', 'Lisa']
+]
+
+# 打印Apple:
+print(Y[0][0])
+# 打印Python:
+print(Y[1][1])
+# 打印Lisa:
+print(Y[2][2])
+

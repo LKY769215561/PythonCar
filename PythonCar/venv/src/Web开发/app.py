@@ -16,7 +16,6 @@ def signin_from():
               <p><input name="password" type="password"></p>
               <p><button type="submit">Sign In</button></p>
               </form>'''
-
 @app.route('/signin', methods=['POST'])
 def signin():
     # 需要从request对象读取表单内容：

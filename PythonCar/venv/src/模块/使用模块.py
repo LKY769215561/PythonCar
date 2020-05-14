@@ -14,6 +14,16 @@ Python本身就内置了很多非常有用的模块，只要安装完毕，这�
 __author__ = 'carey'
 
 import sys
+#import random
+from random import randint,choice
+
+#num = random.randint(1,10)
+#print('num:',num)
+
+num2 = randint(3,9)
+print(num2)
+num3 = choice(1,2,3,4)
+print(num3)
 
 def test():
     args = sys.argv

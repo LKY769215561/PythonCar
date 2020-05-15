@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import requests,os
 
 '''
 读写文件是最长江的IO操作，Python内置了读写文件的函数，用法和C是兼容的
@@ -78,4 +79,28 @@ f5.close()
 
 '''
 
+
+downloadPath = 'download/'
+pic_link = 'http://pic.topmeizi.com/wp-content/uploads/2016a/04/08/01.jpg'
+header = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"}
+
+def creatDir(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+        print('[{}]文件夹已创建'.format(path))
+    else:
+        print('[{}]文件夹已存在'.format(path))
+
+
+if __name__ == '__main__':
+    #创建文件存放路径
+    creatDir(downloadPath)
+    #下载图片
+    res = requests.get(pic_link,header)
+    imageName = pic_link.split('/')[-1]
+    imagePath = downloadPath + imageName
+    print('下载完成')
+    #写入目录文件 w:写文件 wb:写二进制文件 a:追加
+    with open(imagePath,'wb') as f:
+        f.write(res.content)
 

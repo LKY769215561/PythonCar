@@ -76,9 +76,79 @@ print(*nums)
 def person(name, age, **kw):
     print('name:', name, 'age:', age, 'other:', kw)
 
-print(person('Michael', 30))
-print(person('Bob', 35, city='Beijing'))
-print(person('Adam', 45, gender='M', job='Engineer'))
+person('Michael', 30)
+person('Bob', 35, city='Beijing')
+person('Adam', 45, gender='M', job='Engineer')
 
 extra = {'city': 'Beijing', 'job': 'Engineer'}
-print(person('Jack', 24, **extra))
+person('Jack', 24, **extra)
+
+'''
+命名关键字参数
+
+对于关键字参数，函数的调用者可以传入任意不受限制的关键字参数。至于到底传入了哪些，就需要在函数内部通过kw检查。
+
+仍以person()函数为例，我们希望检查是否有city和job参数：
+'''
+
+def person2(name,age,**kw):
+    if 'city' in kw:
+        #有city 参数
+        pass
+    if 'job' in kw:
+        #有job参数
+        pass
+    print('name:',name,'age:',age,'otherL:',kw)
+
+person2('jsck',24,city='shanghai',addr='hanguojie',str='5454')
+
+'''
+如果要限制关键字参数的名字，就可以用命名关键字参数，例如，只接收city和job作为关键字参数。这种方式定义的函数如下：
+'''
+
+def person3(name,age,*,city,job):
+    print(name,age,city,job)
+
+person3('jack',24,city='dfdfd',job='dfdfd')
+
+'''
+参数组合
+在Python中定义函数，可以用必选参数、默认参数、可变参数、关键字参数和命名关键字参数，这5种参数都可以组合使用。但是请注意，参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。
+
+比如定义一个函数，包含上述若干种参数：
+'''
+def f1(a,b,c=0,*args,**kw):
+    print('a =', a, 'b =', b, 'c =', c, 'args =', args, 'kw =', kw)
+
+def f2(a,b,c=0,*,d,**kw):
+    print('a =', a, 'b =', b, 'c =', c, 'd =', d, 'kw =', kw)
+
+f1(1,2)
+f1(1,2,c=3)
+f1(1,2,3,'a','b')
+f1(1,2,3,'a','b',x=99)
+f2(1,2,d=99,ext=None)
+
+'''
+最神奇的是通过一个tuple和dict，你也可以调用上述函数：
+'''
+args = (1,2,3,4)
+kw = {'d':99,'x':'#'}
+f1(*args,**kw)
+args=(1,2,3)
+kw={'d':88,'x':'#'}
+f2(*args,**kw)
+
+'''
+以下函数允许计算两个数的乘积，请稍加改造，变成可接收一个或多个数并计算乘积：
+def product(x, y):
+    return x * y
+'''
+
+def product(*args):
+    total = 1
+    for n in args:
+        total = total * n
+    return total
+jinum = product(5,6,7,9)
+print('jinum:',jinum)

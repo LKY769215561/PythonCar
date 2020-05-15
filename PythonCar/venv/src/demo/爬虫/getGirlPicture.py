@@ -10,7 +10,9 @@ from bs4 import BeautifulSoup
 main_url = 'http://meizitu.com/a/more_{}.html'
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0"}
 
-#创建存放图片的文件夹目录
+# 创建存放图片的文件夹目录
+
+
 def create_pic_dir(name):
     if not os.path.exists(name):
         os.makedirs(name)
@@ -18,13 +20,17 @@ def create_pic_dir(name):
     else:
         print('[{}]文件夹已存在'.format(name))
 
-#下载网页html内容
+#  下载网页html内容
+
+
 def download_page(url):
     r = requests.get(url,headers)
     r.encoding = 'gb2312'
     return r.text
 
-#从html网页中找出图片链接
+#  从html网页中找出图片链接
+
+
 def get_pic_list(html):
     soup = BeautifulSoup(html, 'html.parser')
     pic_list = soup.find_all('li', class_ = 'wp-item')
@@ -34,7 +40,9 @@ def get_pic_list(html):
         text = a_tag.get_text()
         get_pic(link,text)
 
-#根据图片链接下载图片并保存到相应文件夹
+#  根据图片链接下载图片并保存到相应文件夹
+
+
 def get_pic(link,text):
     html = download_page(link)
     soup = BeautifulSoup(html,'html.parser')
@@ -51,16 +59,16 @@ def get_pic(link,text):
             time.sleep(1)   # 休息一下，不要给网站太大压力，避免被封
 
 
-#在子线程执行任务
+#  在子线程执行任务
 def execute(url):
     html = download_page(url)
     get_pic_list(html)
 
 
 def main():
-    #创建存放图片的文件目录
+    #  创建存放图片的文件目录
     create_pic_dir('girlPic')
-    #妹子图片链接关键下标
+    #  妹子图片链接关键下标
     queue = list(range(1,10))
     threads = []
     while len(queue) > 0:

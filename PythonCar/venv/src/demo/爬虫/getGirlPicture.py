@@ -45,6 +45,7 @@ def get_pic(link,text):
         pic_link = img.get('src')  # 下载图片，之后保存到文件
         r = requests.get(pic_link, headers=headers)
         path = 'girlPic/{}/{}'.format(text, pic_link.split('/')[-1])
+        # w:写文件 wb:写入二进制文件  a:拼接文件
         with open(path, 'wb') as f:
             f.write(r.content)
             time.sleep(1)   # 休息一下，不要给网站太大压力，避免被封

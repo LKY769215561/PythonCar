@@ -28,7 +28,7 @@ print(arr)
 '''
 例如，列出当前目录下的所有文件和目录名，可以通过一行代码实现：
 '''
-arr1 = [d for d in os.listdir('.')]
+arr1 = [d for d in os.listdir('')]
 print(arr1)
 
 

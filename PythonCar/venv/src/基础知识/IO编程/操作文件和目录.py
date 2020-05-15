@@ -36,7 +36,7 @@ print(os.environ.get('PATH'))
 
 path = '/Users/qzj/Desktop/测试'
 # 查看当前目录的绝对路径:
-print(os.path.abspath('.'))
+print(os.path.abspath(''))
 # 在某个目录下创建一个新目录，首先把新目录的完整路径表示出来:
 newpath = os.path.join(path,'testdir')
 print(newpath)

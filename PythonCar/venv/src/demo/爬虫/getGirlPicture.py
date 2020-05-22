@@ -5,20 +5,12 @@ import os
 import time
 import threading
 from bs4 import BeautifulSoup
+import util
 
 
 main_url = 'http://meizitu.com/a/more_{}.html'
-headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0"}
-
-# 创建存放图片的文件夹目录
 
 
-def create_pic_dir(name):
-    if not os.path.exists(name):
-        os.makedirs(name)
-        print('[{}]文件夹已创建'.format(name))
-    else:
-        print('[{}]文件夹已存在'.format(name))
 
 #  下载网页html内容
 
@@ -48,7 +40,8 @@ def get_pic(link,text):
     soup = BeautifulSoup(html,'html.parser')
     pic_list = soup.find('div',id='picture').find_all('img')
     dicName = 'girlPic/{}'.format(text)
-    create_pic_dir(dicName)
+    util.create_pic_dir(dicName)
+
     for img in pic_list:
         pic_link = img.get('src')  # 下载图片，之后保存到文件
         r = requests.get(pic_link, headers=headers)
@@ -67,7 +60,7 @@ def execute(url):
 
 def main():
     #  创建存放图片的文件目录
-    create_pic_dir('girlPic')
+    util.create_pic_dir('girlPic')
     #  妹子图片链接关键下标
     queue = list(range(1,10))
     threads = []

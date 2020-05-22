@@ -3,7 +3,33 @@
 '''
 当我们在传入函数时，有些时候，不需要显式地定义函数，直接传入匿名函数更方便。
 在Python中，对匿名函数提供了有限支持。还是以map()函数为例，计算f(x)=x2时，除了定义一个f(x)的函数外，还可以直接传入匿名函数：
+
+语法格式
+fn  = lambda[arg1,arg2,arg3]:执行语句
+
 '''
+
+def sum(x,y):
+    return x + y
+
+sum2 = lambda x , y : x + y
+
+print(sum(1,1))
+print(sum2(1,1))
+
+
+'''
+作为回调函数
+'''
+def test(callback):
+    print('1')
+    callback()
+    print('3')
+
+test(lambda:print('2'))
+
+
+
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 print(list(map(lambda x:x * x,arr)))

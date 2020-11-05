@@ -1,5 +1,3 @@
-# -*- coding: UTF-8 -*-
-
 import requests
 import os
 import time
@@ -9,7 +7,7 @@ import util
 
 
 main_url = 'http://meizitu.com/a/more_{}.html'
-
+headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0"}
 
 
 #  下载网页html内容
@@ -71,7 +69,7 @@ def main():
         while len(threads) < 5 and len(queue) > 0: #最大线程数为5
             cur_page = queue.pop(0)  # 拿出数组中第一个元素
             url = main_url.format(cur_page)
-            thread = threading.Thread(target=execute,args=(url,))
+            thread = threading.Thread(target=execute(url))
             thread.setDaemon(True) #守护线程，当祝线程销毁系统会主动kill掉所有子线程
             thread.start()
             logstr = '线程:{}正在下载url:{}'.format(threading.current_thread().name,url)

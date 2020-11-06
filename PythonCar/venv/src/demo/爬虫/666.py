@@ -53,6 +53,7 @@ def get_pic(link,text):
 #  在子线程执行任务
 def execute(url):
     html = download_page(url)
+    print(html)
     get_pic_list(html)
 
 

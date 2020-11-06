@@ -5,11 +5,16 @@ import math
 在Python中，定义一个函数要使用def语句，依次写出函数名、括号、括号中的参数和冒号:，然后，在缩进块中编写函数体，函数的返回值用return语句返回。
 我们以自定义一个求绝对值的my_abs函数为例：
 '''
+
+
 def my_abs(x):
+    if not isinstance(x, (int, float)):
+        return TypeError('老弟，参数类型不对啊')
     if x >= 0:
         return x
     else:
         return -x
+
 
 print(my_abs(-10))
 
@@ -18,8 +23,29 @@ print(my_abs(-10))
 如果想定义一个什么事也不做的空函数，可以用pass语句：
 '''
 
+
 def nop():
     pass
+
+
+'''
+参数检查
+如果参数的个数不对，python解释器会自动检查出来，并抛出TypeError
+如果参数类型不对，python解释器无法帮我们检查，试试myabs() 和 abs()的区别
+
+'''
+
+'''
+my_abs(1,4)
+TypeError: my_abs() takes 1 positional argument but 2 were given
+'''
+
+'''
+my_abs('A')
+TypeError: '>=' not supported between instances of 'str' and 'int'
+'''
+
+print(my_abs('carey'))
 
 '''
 返回多个值
@@ -28,12 +54,32 @@ def nop():
 原来返回值是一个tuple！但是，在语法上，返回一个tuple可以省略括号，而多个变量可以同时接收一个tuple，按位置赋给对应的值，所以，Python的函数返回多值其实就是返回一个tuple，但写起来更方便。
 '''
 
+
 def move(x, y, step, angle=0):
     nx = x + step * math.cos(angle)
     ny = y - step * math.sin(angle)
     return nx, ny
 
-x,y = move(100,100,60,math.pi/6)
-print(x,y)
-p = move(100,100,60,math.pi/6)
+
+x, y = move(100, 100, 60, math.pi / 6)
+print(x, y)
+p = move(100, 100, 60, math.pi / 6)
 print(p)
+
+'''
+请定一个函数quadratic(a,b,c),接收三个参数，返回一元二次方程ax2 + bx + c = 0 的两个解
+
+'''
+
+
+def quadratic(a, b, c):
+    m = pow(b, 2) - (4 * a * c)
+    if m < 0:
+        return TypeError('此题无解,请重新输入')
+    x1 = (-b + math.sqrt(m)) / (2 * a)
+    x2 = (-b - math.sqrt(m)) / (2 * a)
+    return x1, x2
+
+
+result = quadratic(1, 2, 3)
+print(result)

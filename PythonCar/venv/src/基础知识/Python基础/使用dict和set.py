@@ -89,13 +89,25 @@ print(s1 & s2)
 print(s1 | s2)
 
 '''
-replace会返回一个新的字符串指针
+set和dict的唯一区别仅在于没有存储对应的value，但是，set的原理和dict一样，所以，同样不可以放入可变对象，因为无法判断两个可变对象是否相等，也就无法保证set内部“不会有重复元素”。试试把list放入set，看看是否会报错。
+'''
+
+
+'''
+str 是不可变对象，而list是可变对象，对于可变对象，对list内部进行操作，list的值会发生变化，而str不会
 '''
 a = ['c', 'b', 'a']
 a.sort()
 print(a)
+'''
+list 值的顺序发生了变化
+'''
 
 str = 'abc'
 str2 = str.replace('a','A')
 print(str)
 print(str2)
+'''
+replace会返回一个新的字符串指针
+不可变对象的实现原理:通过创建新的对象并返回，用新的指针进行指向
+'''

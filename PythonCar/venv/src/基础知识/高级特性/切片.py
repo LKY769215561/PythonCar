@@ -41,11 +41,22 @@ print(arr1[:10:2])
 '''
 
 def trim(s):
-    s2 =s
+    s2 = s
     if s2[0] == ' ':
         s2 = s2[-(len(s2)-1):]
-    if s2[len(s2)-1] == ' ':
+    if s2[-1] == ' ':
         s2 = s2[:len(s2)-1]
     return s2
 
+def trim2(s):
+    s2 = s
+    if s2[0] == ' ':
+        s2 = s[1:(len(s2)-1)]
+    if s2[-1] == ' ':
+        s2 = s2[0: (len(s2)-1)]
+
+    return s2
+
+
 print(trim(' dfdfdfdfd  '))
+print(trim2(' dfdfdfdfd  '))

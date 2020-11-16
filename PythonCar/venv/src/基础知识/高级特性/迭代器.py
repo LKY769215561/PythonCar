@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
-from  collections.abc import Iterable
-from  collections.abc import Iterator
+from collections.abc import Iterable
+from collections.abc import Iterator
 
 '''
 我们已经知道，可以直接作用于for循环的数据类型有以下几种：
@@ -15,28 +15,36 @@ from  collections.abc import Iterator
 
 '''
 
-print(isinstance([],Iterable))
-print(isinstance({},Iterable))
-print(isinstance('abc',Iterable))
-print(isinstance((x for x in range(10)),Iterable))
-print(isinstance(100,Iterable))
+print(isinstance([], Iterable))
+print(isinstance({}, Iterable))
+print(isinstance('abc', Iterable))
+print(isinstance((x for x in range(10)), Iterable))
+print(isinstance(100, Iterable))
 
 '''
 可以使用isinstance()判断一个对象是否是Iterator对象：
 '''
 
 print("--------------")
-print(isinstance([],Iterator))
-print(isinstance({},Iterator))
-print(isinstance('abc',Iterator))
-print(isinstance((x for x in range(10)),Iterator))
+print(isinstance([], Iterator))
+print(isinstance({}, Iterator))
+print(isinstance('abc', Iterator))
+print(isinstance((x for x in range(10)), Iterator))
 
 '''
 生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。
-
-把list、dict、str等Iterable变成Iterator可以使用iter()函数：
+这是因为Python的Iterator对象表示的是一个数据流，Iterator对象可以被next()函数调用并不断返回下一个数据,直到没有数据时抛出StopIteration
+错误，可以把这个数据看作是一个有序序列，但我们却不能提前知道序列的长度,只能不断通过next()函数实现按需计算下一个数据，所以Iterator的计算是惰性的
+只有在需要返回下一个数据时它才会计算
 '''
+for x in [1,2,3,4]:
+    pass
 
-print("--------------")
-print(isinstance(iter([]), Iterator))
-print(isinstance(iter('abc'), Iterator))
+# 等价于
+it = iter([1,2,3,4])
+while True:
+      try:
+          x = next(it)
+      except StopIteration:
+          break
+
